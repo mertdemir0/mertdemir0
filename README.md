@@ -31,16 +31,16 @@
 
 ![GitHub Activity Graph](https://activity-graph.herokuapp.com/graph?username=mertdemir0)  
 
-<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=mertdemir0&show_icons=true&locale=en&layout=compact" alt="mertdemir0" /></p>
+<p><img align="right" src="https://github-readme-stats.vercel.app/api/top-langs?username=mertdemir0&show_icons=true&locale=en&theme=dracula" alt="mertdemir0" /></p>
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=mertdemir0&show_icons=true&locale=en" alt="mertdemir0" /></p>
+<p>&nbsp;<img align="right" src="https://github-readme-stats.vercel.app/api?username=mertdemir0&show_icons=true&theme=dracula" alt="mertdemir0" /></p>
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=mertdemir0&" alt="mertdemir0" /></p>
+<p><img align="right" src="https://github-readme-streak-stats.herokuapp.com?user=mertdemir0&theme=dracula&date_format=j%20M%5B%20Y%5D" alt="mertdemir0" /></p>
 
 
 <a href="https://github.com/mertdemir0/Princeton-Algorithms--Part-1">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=mertdemir0&repo=Princeton-Algorithms--Part-1" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=mertdemir0&repo=Princeton-Algorithms--Part-1&theme=dracula" />
 </a>
 <a href="https://github.com/mertdemir0/Princeton-Algorithms--Part-2">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=mertdemir0&repo=Princeton-Algorithms--Part-2" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=mertdemir0&repo=Princeton-Algorithms--Part-2&theme=dracula" />
 </a>
