@@ -4,7 +4,7 @@
 <p align="center"> <img src="https://komarev.com/ghpvc/?username=mertdemir0&label=Profile%20views&color=0e75b6&style=flat" alt="mertdemir0" /> </p> 
 <p align="center"> <a href="https://twitter.com/mertinblack" target="blank"><img src="https://img.shields.io/twitter/follow/mertinblack?logo=twitter&style=for-the-badge" alt="mertinblack" /></a> </p>
 
-<h3 align="center">Connect with me:</h3>
+<h2 align="center">Connect with me <img src='https://raw.githubusercontent.com/ShahriarShafin/ShahriarShafin/main/Assets/handshake.gif' width="100px"></h2>
 <p align="center">
 <a href="https://twitter.com/mertinblack" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="mertinblack" height="30" width="40" /></a>
 <a href="https://linkedin.com/in/mertdemir0" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="mertdemir0" height="30" width="40" /></a>
@@ -31,8 +31,16 @@
 
 ![GitHub Activity Graph](https://activity-graph.herokuapp.com/graph?username=mertdemir0)  
 
-<p><img align="right" src="https://github-readme-stats.vercel.app/api/top-langs?username=mertdemir0&show_icons=true&locale=en&layout=compact" alt="mertdemir0" /></p>
+<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=mertdemir0&show_icons=true&locale=en&layout=compact" alt="mertdemir0" /></p>
 
 <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=mertdemir0&show_icons=true&locale=en" alt="mertdemir0" /></p>
 
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=mertdemir0&" alt="mertdemir0" /></p>
+
+
+<a href="https://github.com/mertdemir0/Princeton-Algorithms--Part-1">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=mertdemir0&repo=Princeton-Algorithms--Part-1" />
+</a>
+<a href="https://github.com/mertdemir0/Princeton-Algorithms--Part-2">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=mertdemir0&repo=Princeton-Algorithms--Part-2" />
+</a>
