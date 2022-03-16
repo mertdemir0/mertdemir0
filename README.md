@@ -2,11 +2,13 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&style=social&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mertdemir0)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&style=social&logo=instagram&logoColor=white)](https://www.instagram.com/mertinblack/)
 
+
+
 <h1 align="center">Hi 👋, I'm Mert</h1>
 <h3 align="center">M.Sc. Data Scientist</h3>
 
 <p align="center"> <img src="https://komarev.com/ghpvc/?username=mertdemir0&label=Profile%20views&color=0e75b6&style=flat" alt="mertdemir0" /> </p> 
-<p align="center"> <a href="https://twitter.com/mertinblack" target="blank"><img src="https://img.shields.io/twitter/follow/mertinblack?logo=twitter&style=for-the-badge" alt="mertinblack" /></a> </p>
+
 
 <h2 align="center">Connect with me <img src='https://raw.githubusercontent.com/ShahriarShafin/ShahriarShafin/main/Assets/handshake.gif' width="100px"></h2>
 <p align="center">
