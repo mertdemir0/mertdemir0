@@ -8,11 +8,6 @@
 <h3 align="center">M.Sc. Data Scientist</h3>
 
 
-<p align='center'><a href="https://app.daily.dev/mertinblack"><img src="https://api.daily.dev/devcards/b3c90b9b7f4140f6a9228cf63de72da0.png?r=hkv" width="400" alt="Mert Demir's Dev Card"/></a></p>
-
-
-<p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=mertdemir0" alt="mertdemir0" /></a> </p>
-
 
 <p align="center"> <img src="https://komarev.com/ghpvc/?username=mertdemir0&label=Profile%20views&color=0e75b6&style=flat" alt="mertdemir0" /> </p> 
 
@@ -29,9 +24,8 @@
 
 - 👨‍💻 All of my projects are available at [https://www.github.com/mertdemir0](https://www.github.com/mertdemir0) 
 
-- 📝 I regularly write articles on [https://www.mertdemir.org](https://www.mertdemir.org)
 
-- 📫 How to reach me **info@mertdemir.org**
+- 📫 How to reach me **mert.demir@feem.it**
 
 - 📄 Know about my experiences [https://www.linkedin.com/in/mertdemir0](https://www.linkedin.com/in/mertdemir0)
 
