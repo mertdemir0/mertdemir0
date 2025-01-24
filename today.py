@@ -108,67 +108,79 @@ def graph_repos_stars(count_type, owner_affiliation, cursor=None, add_loc=0, del
 
 def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, deletion_total=0, my_commits=0, cursor=None):
     """
-    Uses GitHub's GraphQL v4 API and cursor pagination to fetch 100 commits from a repository at a time
+    Iteratively fetch commit history to avoid recursion depth issues.
+    Processes commits in batches and accumulates additions, deletions, and commit counts.
     """
-    query_count('recursive_loc')
-    query = '''
-    query ($repo_name: String!, $owner: String!, $cursor: String) {
-        repository(name: $repo_name, owner: $owner) {
-            defaultBranchRef {
-                target {
-                    ... on Commit {
-                        history(first: 20, after: $cursor) {
-                            totalCount
-                            edges {
-                                node {
-                                    ... on Commit {
+    while True:
+        query = '''
+        query ($repo_name: String!, $owner: String!, $cursor: String) {
+            repository(name: $repo_name, owner: $owner) {
+                defaultBranchRef {
+                    target {
+                        ... on Commit {
+                            history(first: 20, after: $cursor) {  # Reduced batch size
+                                totalCount
+                                edges {
+                                    node {
                                         committedDate
-                                    }
-                                    author {
-                                        user {
-                                            id
+                                        additions
+                                        deletions
+                                        author {
+                                            user {
+                                                id
+                                            }
                                         }
                                     }
-                                    deletions
-                                    additions
                                 }
-                            }
-                            pageInfo {
-                                endCursor
-                                hasNextPage
+                                pageInfo {
+                                    endCursor
+                                    hasNextPage
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-    }'''
-    variables = {'repo_name': repo_name, 'owner': owner, 'cursor': cursor}
-    request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables':variables}, headers=HEADERS) # I cannot use simple_request(), because I want to save the file before raising Exception
-    if request.status_code == 200:
-        if request.json()['data']['repository']['defaultBranchRef'] != None: # Only count commits if repo isn't empty
-            return loc_counter_one_repo(owner, repo_name, data, cache_comment, request.json()['data']['repository']['defaultBranchRef']['target']['history'], addition_total, deletion_total, my_commits)
-        else: return 0
-    force_close_file(data, cache_comment) # saves what is currently in the file before this program crashes
-    if request.status_code == 403:
-        raise Exception('Too many requests in a short amount of time!\nYou\'ve hit the non-documented anti-abuse limit!')
-    raise Exception('recursive_loc() has failed with a', request.status_code, request.text, QUERY_COUNT)
+        }'''
+        variables = {'repo_name': repo_name, 'owner': owner, 'cursor': cursor}
+        response = requests.post(
+            'https://api.github.com/graphql',
+            json={'query': query, 'variables': variables},
+            headers=HEADERS,
+        )
+
+        if response.status_code != 200:
+            raise Exception(f"GitHub API error: {response.status_code} - {response.text}")
+
+        result = response.json()
+        if 'errors' in result:
+            print(f"GraphQL errors: {result['errors']}")
+            break  # Exit on error
+
+        # Extract commit history
+        history = result['data']['repository']['defaultBranchRef']['target']['history']
+
+        # Process commits in the current batch
+        for edge in history['edges']:
+            commit = edge['node']
+            if commit['author']['user'] and commit['author']['user']['id'] == OWNER_ID:
+                my_commits += 1
+                addition_total += commit['additions']
+                deletion_total += commit['deletions']
+
+        # Check if there are more pages
+        if not history['pageInfo']['hasNextPage']:
+            break  # Exit loop when no more pages
+        cursor = history['pageInfo']['endCursor']  # Move to the next page
+
+    return addition_total, deletion_total, my_commits
 
 
 def loc_counter_one_repo(owner, repo_name, data, cache_comment, history, addition_total, deletion_total, my_commits):
     """
-    Recursively call recursive_loc (since GraphQL can only search 100 commits at a time) 
-    only adds the LOC value of commits authored by me
+    Calls recursive_loc to process commit history iteratively.
     """
-    for node in history['edges']:
-        if node['node']['author']['user'] == OWNER_ID:
-            my_commits += 1
-            addition_total += node['node']['additions']
-            deletion_total += node['node']['deletions']
-
-    if history['edges'] == [] or not history['pageInfo']['hasNextPage']:
-        return addition_total, deletion_total, my_commits
-    else: return recursive_loc(owner, repo_name, data, cache_comment, addition_total, deletion_total, my_commits, history['pageInfo']['endCursor'])
+    return recursive_loc(owner, repo_name, data, cache_comment, addition_total, deletion_total, my_commits)
 
 
 def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None, edges=[]):
