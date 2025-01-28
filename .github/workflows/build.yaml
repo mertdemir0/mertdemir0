@@ -5,6 +5,10 @@ on:
       - main
   schedule:
     - cron: "0 4 * * *"
+
+permissions:
+  contents: write 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,9 +36,9 @@ jobs:
         run: python today.py
       - name: Commit
         run: |-
-          git add .
-          git diff
           git config --global user.email "mert.d728@hotmail.com"
           git config --global user.name "mertdemir0"
+          git add .
+          git diff
           git commit -m "Updated README" -a || echo "No changes to commit"
           git push
