@@ -10,6 +10,20 @@ import hashlib
 # Account permissions: read:Followers, read:Starring, read:Watching
 # Repository permissions: read:Commit statuses, read:Contents, read:Issues, read:Metadata, read:Pull Requests
 # Issues and pull requests permissions not needed at the moment, but may be used in the future.
+
+def resilient_post(url, payload, headers, max_retries=5):
+    for attempt in range(max_retries):
+        response = requests.post(url, json=payload, headers=headers)
+        if response.status_code == 200:
+            return response
+        elif response.status_code >= 500:
+            wait_time = 2 ** attempt
+            print(f"[Retry {attempt+1}] GitHub API error {response.status_code}. Retrying in {wait_time}s...")
+            time.sleep(wait_time)
+        else:
+            raise Exception(f"GitHub API error: {response.status_code} - {response.text}")
+    raise Exception(f"GitHub API failed after {max_retries} retries")
+
 HEADERS = {'authorization': 'token '+ os.environ['ACCESS_TOKEN']}
 USER_NAME = os.environ['USER_NAME'] # 'mertdemir0'
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
@@ -44,7 +58,7 @@ def simple_request(func_name, query, variables):
     """
     Returns a request, or raises an Exception if the response does not succeed.
     """
-    request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables':variables}, headers=HEADERS)
+    request = resilient_post('https://api.github.com/graphql', json={'query': query, 'variables':variables}, headers=HEADERS)
     if request.status_code == 200:
         return request
     raise Exception(func_name, ' has failed with a', request.status_code, request.text, QUERY_COUNT)
@@ -143,8 +157,7 @@ def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, delet
             }
         }'''
         variables = {'repo_name': repo_name, 'owner': owner, 'cursor': cursor}
-        response = requests.post(
-            'https://api.github.com/graphql',
+        response = resilient_post('https://api.github.com/graphql',
             json={'query': query, 'variables': variables},
             headers=HEADERS,
         )
